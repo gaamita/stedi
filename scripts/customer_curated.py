@@ -36,6 +36,6 @@ where shareWithResearchAsOfDate is not null
 customer_transform_node1722305255623 = sparkSqlQuery(glueContext, query = SqlQuery0, mapping = {"myDataSource":accelerometer_landing_node1722305235068, "otherSource":customer_landing_node1722305207180}, transformation_ctx = "customer_transform_node1722305255623")
 
 # Script generated for node customer_curated
-customer_curated_node1722305368622 = glueContext.write_dynamic_frame.from_catalog(frame=customer_transform_node1722305255623, database="stedi", table_name="customer_curated", transformation_ctx="customer_curated_node1722305368622")
+customer_curated_node1722305368622 = glueContext.write_dynamic_frame.from_catalog(frame=customer_transform_node1722305255623, database="stedi", table_name="customer_curated", additional_options={"enableUpdateCatalog": True, "updateBehavior": "UPDATE_IN_DATABASE"}, transformation_ctx="customer_curated_node1722305368622")
 
 job.commit()
