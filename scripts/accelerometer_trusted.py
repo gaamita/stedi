@@ -35,6 +35,6 @@ on myDataSource.user = otherSource.email
 accelerometer_transform_node1722304231712 = sparkSqlQuery(glueContext, query = SqlQuery0, mapping = {"myDataSource":accelerometer_landing_node1722304218753, "otherSource":customer_trusted_node1722304166832}, transformation_ctx = "accelerometer_transform_node1722304231712")
 
 # Script generated for node AWS Glue Data Catalog
-AWSGlueDataCatalog_node1722304528999 = glueContext.write_dynamic_frame.from_catalog(frame=accelerometer_transform_node1722304231712, database="stedi", table_name="accelerometer_trusted", transformation_ctx="AWSGlueDataCatalog_node1722304528999")
+AWSGlueDataCatalog_node1722304528999 = glueContext.write_dynamic_frame.from_catalog(frame=accelerometer_transform_node1722304231712, database="stedi", table_name="accelerometer_trusted", additional_options={"enableUpdateCatalog": True, "updateBehavior": "UPDATE_IN_DATABASE"}, transformation_ctx="AWSGlueDataCatalog_node1722304528999")
 
 job.commit()
