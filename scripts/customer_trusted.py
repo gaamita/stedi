@@ -24,11 +24,10 @@ AWSGlueDataCatalog_node1722302717633 = glueContext.create_dynamic_frame.from_cat
 # Script generated for node customer_transform
 SqlQuery0 = '''
 select * from myDataSource where sharewithresearchasofdate is not null
-
 '''
 customer_transform_node1722302930521 = sparkSqlQuery(glueContext, query = SqlQuery0, mapping = {"myDataSource":AWSGlueDataCatalog_node1722302717633}, transformation_ctx = "customer_transform_node1722302930521")
 
 # Script generated for node customer_trusted
-customer_trusted_node1722302991723 = glueContext.write_dynamic_frame.from_catalog(frame=customer_transform_node1722302930521, database="stedi", table_name="customer_trusted", transformation_ctx="customer_trusted_node1722302991723")
+customer_trusted_node1722302991723 = glueContext.write_dynamic_frame.from_catalog(frame=customer_transform_node1722302930521, database="stedi", table_name="customer_trusted", additional_options={"enableUpdateCatalog": True, "updateBehavior": "UPDATE_IN_DATABASE"}, transformation_ctx="customer_trusted_node1722302991723")
 
 job.commit()
